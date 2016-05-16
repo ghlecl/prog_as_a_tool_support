@@ -1,16 +1,16 @@
 
-# Summary #
+#Summary
 This project is the code used in a presentation made at the CHU de Quebec - Université Laval
 on using programming as a tool.
 
 Some radiation therapy data is analyzed using a few techniques:
-   1- Microsoft Excel (TM)
-   2- Vanilla Python code
-   3- Numpy Python code
-   4- C++ code
+1. Microsoft Excel (TM)
+2. Vanilla Python code
+3. Numpy Python code
+4. C++ code
 
 
-## Data Generation ##
+##Data Generation
 The data represents a dose profile in radiation therapy, i.e. a plot of dose as a function
 of lateral position in a medical radiation beam.  Ignoring the file header, it consists of
 two columns representing position (cm) and dose (%).
@@ -33,5 +33,5 @@ length data and read it.  It will then introduce a position shift on every point
 randomly, but the same for every position) and some noise in the dose for the inner 80% to
 simulate non symmetrical data.  The new data will be written in the data folder of the project.
 
-## Analysis ##
+##Analysis
 Not done yet.
