@@ -34,5 +34,20 @@ length data and read it.  It will then introduce a position shift on every point
 randomly, but the same for every position) and some noise in the dose for the inner 80% to
 simulate non symmetrical data.  The new data will be written in the data folder of the project.
 
+
 ##Analysis
-Not done yet.
+###Excel
+This Microsoft Excel (TM) spreadsheet is probably not 100% optimized and I'm sure some people
+will say I could have done better.  That being said, it does calculate the correct symmetry
+for the data.  To calculate a new profile, you have to:
+   1 - Copy one of the data sheets.
+   2 - Paste your data into the columns with the red background.  Some caveats:
+       2.1 - You must make sure to remove the excess data if some exists and leave only
+             your data.
+       2.2 - If you change the location of the first cell, you must adjust the appropriate
+             columns in the Analyse sheet.
+   4 - Create a new line in the Analyse sheet for your new data sheet.  Adjust the name
+       column.
+   3 - Update every cell in your data sheet which refers to the Analyse sheet to
+       have the appropriate line number.  They are with a blue background.
+This should then yeild the symmetry in the last used colum of your data sheet.
