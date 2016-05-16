@@ -4,6 +4,7 @@ This project is the code used in a presentation made at the CHU de Quebec - Univ
 on using programming as a tool.
 
 Some radiation therapy data is analyzed using a few techniques:
+
 1. Microsoft Excel (TM)
 2. Vanilla Python code
 3. Numpy Python code
