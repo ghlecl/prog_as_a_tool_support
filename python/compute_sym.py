@@ -1,5 +1,5 @@
 import numpy as np
-p = np.genfromtxt( "data/prof10x10.pin",skip_header=2)
+p = np.genfromtxt( "../data/Ph06ProfOuv10x10Longi_10.pin",skip_header=2)
 grad = np.gradient(p[:,1]) # extremum of derivative should correspond to the 50% intensity
 mx = np.argmax(grad)
 mn = np.argmin(grad)
