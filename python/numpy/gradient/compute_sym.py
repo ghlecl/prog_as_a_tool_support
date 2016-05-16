@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+# 2016 - Louis Archambault (larchamb@gmail.com)
+
 import numpy as np
 p = np.genfromtxt( "../data/Ph06ProfOuv10x10Longi_10.pin",skip_header=2)
 grad = np.gradient(p[:,1]) # extremum of derivative should correspond to the 50% intensity
