@@ -40,14 +40,14 @@ simulate non symmetrical data.  The new data will be written in the data folder 
 This Microsoft Excel (TM) spreadsheet is probably not 100% optimized and I'm sure some people
 will say I could have done better.  That being said, it does calculate the correct symmetry
 for the data.  To calculate a new profile, you have to:
-   1 - Copy one of the data sheets.
-   2 - Paste your data into the columns with the red background.  Some caveats:
-       2.1 - You must make sure to remove the excess data if some exists and leave only
-             your data.
-       2.2 - If you change the location of the first cell, you must adjust the appropriate
-             columns in the Analyse sheet.
-   4 - Create a new line in the Analyse sheet for your new data sheet.  Adjust the name
-       column.
-   3 - Update every cell in your data sheet which refers to the Analyse sheet to
-       have the appropriate line number.  They are with a blue background.
+
+1. Copy one of the data sheets.  Rename it to something appropriate.
+2. Paste your data into the columns with the red background.  Some caveats:
+  1. You must make sure to remove the excess data if some exists and leave only your data.
+  2. If you change the location of the first cell, you must adjust the appropriate columns
+     in the Analyse sheet.
+3. Create a new line in the Analyse sheet for your new data sheet.  Adjust the name column.
+4. Update every cell in your data sheet which refers to the Analyse sheet to have the
+   appropriate line number.  They are with a blue background.
+
 This should then yeild the symmetry in the last used colum of your data sheet.
