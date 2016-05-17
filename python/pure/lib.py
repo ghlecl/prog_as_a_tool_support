@@ -133,23 +133,23 @@ def x_val_from_y_descend( data, y_val ):
 from enum import Enum
 
 class From( Enum ):
-   begin = 1
+   front = 1
    end = 2
 
-def x_val_from_y( data, y_val, ascend = From.begin ):
+def x_val_from_y( data, y_val, ascend = From.front ):
    x = None
-   if ascend == From.begin:
+   if ascend == From.front:
       x = x_val_from_y_ascend( data, y_val )
    elif ascend == From.end:
       x = x_val_from_y_descend( data, y_val )
    else:
       raise TypeError( 'ascend parameter must be a From enum' )
    return x
+ 
 
-
-def y_val_from_x( data, x_val, ascend : bool = From.begin ):
+def y_val_from_x( data, x_val, ascend : bool = From.front ):
    y = None
-   if ascend == From.begin:
+   if ascend == From.front:
       y = y_val_from_x_ascend( data, x_val )
    elif ascend == From.end:
       y = y_val_from_x_descend( data, x_val )

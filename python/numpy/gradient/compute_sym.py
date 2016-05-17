@@ -11,13 +11,13 @@ if __name__ == '__main__':
    # read data
    files = []
    if len( sys.argv ) == 1:
-      print( 'You have to provide at least one file name to analyse' )
+      print( 'You have to provide at least one file name to analyse.' )
    else:
       for cur_arg in sys.argv[1:]: # sys.argv[0] == program name, so must skip
          if os.path.exists( cur_arg ):
             files.append( cur_arg )
          else:
-            print( 'Argument ' + cur_arg + ' is not a file or does not exist.  Will be ignored.' )
+            print( 'Argument ' + cur_arg + ' is not a valid file or does not exist.  Will be ignored.' )
 
    for cur_file in files:
       import numpy as np
@@ -33,6 +33,5 @@ if __name__ == '__main__':
       smpl_l = np.arange(-0.2,-10.2,-0.2)
       d_l = np.interp(smpl_l,p[:,0],p[:,1])
       sym = np.max(np.abs(d_r - d_l)[d_r >= 90.]) # stop above 80% to avoid shoulders
-      print( "" )
       print( "(" + os.path.basename( cur_file ) + ")\tsymétrie: " +
                                           "{sym:.2f}".format( sym=sym ) )

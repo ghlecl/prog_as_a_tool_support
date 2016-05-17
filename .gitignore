@@ -1,6 +1,7 @@
 # Files
 *.pyc
 *~$*
+main
 
 
 # Directories (and thus their content)
