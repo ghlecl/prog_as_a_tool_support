@@ -1,0 +1,7 @@
+# Files
+*.pyc
+*~$*
+
+
+# Directories (and thus their content)
+__pycache__/
