@@ -37,9 +37,9 @@ simulate non symmetrical data.  The new data will be written in the data folder 
 
 ##Analysis
 ###Excel
-This Microsoft Excel (TM) spreadsheet is probably not 100% optimized and I'm sure some people
-will say I could have done better.  That being said, it does calculate the correct symmetry
-for the data.  To calculate a new profile, you have to:
+This Microsoft Excel (TM) spreadsheet is probably not 100% optimized and I'm sure
+some people will say I could have done better.  That being said, it does calculate
+the correct symmetry for the data.  To calculate a new profile, you have to:
 
 1. Copy one of the data sheets.  Rename it to something appropriate.
 2. Paste your data into the columns with the red background.  Some caveats:
@@ -51,3 +51,31 @@ for the data.  To calculate a new profile, you have to:
    appropriate line number.  They are with a blue background.
 
 This should then yeild the symmetry in the last used colum of your data sheet.
+
+###Programs
+Every program needs to be provided at least one (or more) file name.  It opens the file
+as an ASCII file and attempts to read radiation profile data from it.  It then
+calculates the symmetry and reports it to standard output.
+
+####Vanilla Python
+The program is divided into two files : lib.py and analyze.py.  The analyze.py file
+is the one containing the main program and the lib.py file contains the more generic
+helper functions.  It does not contain a hash/bang symbol, meaning it is not considered
+an executable and must be run explicitely through Python.
+
+python analyze.py "my file name"
+
+####Numpy Python
+
+####C++
+The program is a single cpp file which contains everything.  It relies only on the
+STL (Standard Template Library), but does use C++14 features so should be compiled
+with the appropriate compiler options on some platform (Clang and GCC).  To compile
+into an executable:
+
+- GCC : g++ -std=c++1z main.cpp -o main
+- Clang : clang++ -std=c++1z main.cpp -o main
+
+The executable can the be run as
+
+main "my file name"
