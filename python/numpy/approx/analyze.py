@@ -33,13 +33,12 @@ for cur_file in files:
 
    # Create new position arrays for the left and right halves of the profile
    symetry_range = 0.8 * width # 80% of the beam width
-   step = 0.1
-   lt_half_pos = np.arange( -symetry_range / 2.0, 0.0 - step, step )
-   rt_half_pos = np.arange( symetry_range / 2.0, 0.0 + step, -step )
+   step = 0.001
+   half_pos = np.arange( symetry_range / 2.0, 0.0 + step, -step )
 
    # Interpolate the doses and calculate the symmetry
-   lt_half_doses = np.interp( lt_half_pos, data[:,0], data[:,1] )
-   rt_half_doses = np.interp( rt_half_pos, data[:,0], data[:,1] )
+   lt_half_doses = np.interp( half_pos, data[:,0], data[:,1] )
+   rt_half_doses = np.interp( -half_pos, data[:,0], data[:,1] )
    sym = np.max( np.abs( lt_half_doses - rt_half_doses ) )/axis_dose * 100.0 # stop above 80% to avoid shoulders
    
    # Output the results
