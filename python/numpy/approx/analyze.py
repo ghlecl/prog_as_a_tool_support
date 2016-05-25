@@ -12,14 +12,13 @@ if __name__ == '__main__':
 
    # read data
    files = []
-   if len( sys.argv ) == 1:
-      print( 'You have to provide at least one file name to analyse.' )
-   else:
-      for cur_arg in sys.argv[1:]: # sys.argv[0] == program name, so must skip
-         if os.path.exists( cur_arg ):
-            files.append( cur_arg )
-         else:
-            print( 'Argument ' + cur_arg + ' is not a valid file or does not exist.  Will be ignored.' )
+   for cur_arg in sys.argv[1:]:
+      try:
+         assert os.path.exists(cur_arg), cur_arg
+         files.append(cur_arg)
+      except AssertionError as err:
+         print('Argument ' + err.args[0] + ' is not a valid file or does not exist.  Will be ignored.')
+   assert len(files) > 0, 'No valid files provided'
 
    for cur_file in files:
       # Read file content
@@ -41,7 +40,6 @@ if __name__ == '__main__':
       step = 0.1
       lt_half_pos = np.arange(-symetry_range/2,0-step,step)
       rt_half_pos = np.arange(symetry_range/2,0+step,-step)
-
 
       # Interpolate the doses and calculate the symmetry
       lt_half_doses = np.interp( lt_half_pos, data[:,0], data[:,1] )
