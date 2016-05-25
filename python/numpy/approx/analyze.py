@@ -37,12 +37,11 @@ if __name__ == '__main__':
       data[:,0] -= posi_50_descend - ( width / 2.0 )
 
       # Create new position arrays for the left and right halves of the profile
-      min_dim = floor( min( abs(data[0][0]), abs(data[len( data ) - 1][0]) ) * 10.0 ) / 10.0
-      sym_calc_limit = round( 0.80 * min_dim )
+      symetry_range = 0.8*width # 80% of the beam width
       step = 0.1
-      nb_of_steps = round( sym_calc_limit / step )
-      lt_half_pos = np.linspace( -step, -sym_calc_limit, nb_of_steps )
-      rt_half_pos = np.linspace( step, sym_calc_limit, nb_of_steps )
+      lt_half_pos = np.arange(-symetry_range/2,0-step,step)
+      rt_half_pos = np.arange(symetry_range/2,0+step,-step)
+
 
       # Interpolate the doses and calculate the symmetry
       lt_half_doses = np.interp( lt_half_pos, data[:,0], data[:,1] )
