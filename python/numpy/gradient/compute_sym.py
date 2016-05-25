@@ -3,35 +3,33 @@
 # 2016 - Louis Archambault (larchamb@gmail.com)
 
 #===============================================================================
-if __name__ == '__main__':
-   from math import floor
-   import sys
-   import os.path
+import numpy as np
+import sys
+import os.path
 
-   # read data
-   files = []
-   if len( sys.argv ) == 1:
-      print( 'You have to provide at least one file name to analyse.' )
-   else:
-      for cur_arg in sys.argv[1:]: # sys.argv[0] == program name, so must skip
-         if os.path.exists( cur_arg ):
-            files.append( cur_arg )
-         else:
-            print( 'Argument ' + cur_arg + ' is not a valid file or does not exist.  Will be ignored.' )
+# read data
+files = []
+for cur_arg in sys.argv[1:]:
+	try:
+		assert os.path.exists( cur_arg ), cur_arg
+		files.append( cur_arg )
+	except AssertionError as err:
+		print('Argument ' + err.args[0] + ' is not a valid file or does not exist.  Will be ignored.')
+assert len(files) > 0, 'No valid files provided'
 
-   for cur_file in files:
-      import numpy as np
-      p = np.genfromtxt( cur_file, skip_header=2 )
-      grad = np.gradient(p[:,1]) # extremum of derivative should correspond to the 50% intensity
-      mx = np.argmax(grad)
-      mn = np.argmin(grad)
-      offst = (p[mn,0] + p[mx,0])/2
-      p[:,0] -= offst
-      p[:,1] *= (100/np.interp(0,p[:,0],p[:,1])) # norm by central axis
-      smpl_r = np.arange(0.2,10.2,0.2)
-      d_r = np.interp(smpl_r,p[:,0],p[:,1])
-      smpl_l = np.arange(-0.2,-10.2,-0.2)
-      d_l = np.interp(smpl_l,p[:,0],p[:,1])
-      sym = np.max(np.abs(d_r - d_l)[d_r >= 90.]) # stop above 80% to avoid shoulders
-      print( "(" + os.path.basename( cur_file ) + ")\tsymétrie: " +
-                                          "{sym:.2f}".format( sym=sym ) )
+for cur_file in files:
+	p = np.genfromtxt( cur_file, skip_header=2 )
+	grad = np.gradient(p[:,1]) # extremum of derivative should correspond to the 50% intensity
+	mx = np.argmax(grad)
+	mn = np.argmin(grad)
+	offst = (p[mn,0] + p[mx,0])/2
+	width = np.abs(p[mx,0] - p[mn,0])
+	p[:,0] -= offst
+	p[:,1] *= (100/np.interp(0,p[:,0],p[:,1])) # norm by central axis
+	nb_sample = 1000
+	smpl = np.linspace(0,0.8*width,nb_sample)
+	d_r = np.interp(smpl,p[:,0],p[:,1])
+	d_l = np.interp(-smpl,p[:,0],p[:,1])
+	sym = np.max(np.abs(d_r - d_l))
+	print( "(" + os.path.basename( cur_file ) + ")\tsymétrie: " +
+													"{sym:.2f}".format( sym=sym ) )
