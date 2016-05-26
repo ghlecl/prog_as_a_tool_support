@@ -66,6 +66,19 @@ an executable and must be run explicitely through Python.
 python analyze.py "my file name"
 
 ####Numpy Python
+#####Approx
+The program uses Numpy functions instead of the hand written ones, but implments
+the same algorithm with the same command line interface.
+
+python analyze.py "my file name"
+
+#####Gradient
+The program uses Numpy functions and a difference algorithm to find the width and
+center of the profile.  The algorithm is based on the maximum and minimum of the
+derivative of the profile to extract the two 50% positions.  Then, the rest
+of the algorithm is pretty much the same.
+
+python compute_sym.py "my file name"
 
 ####C++
 The program is a single cpp file which contains everything.  It relies only on the

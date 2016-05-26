@@ -22,7 +22,7 @@ for cur_file in files:
    
    # Find approximate axis dose
    axis_idx = np.argmin( np.abs( data[:,0] ) )
-   axis_dose = data[axis_idx][1]
+   axis_dose = data[axis_idx, 1]
    
    # Find (and apply) position shift based on position of 50% doses
    half_axis_dose = axis_dose / 2.0
@@ -32,14 +32,15 @@ for cur_file in files:
    data[:,0] -= posi_50_descend - ( width / 2.0 )
 
    # Create new position arrays for the left and right halves of the profile
-   symetry_range = 0.8 * width # 80% of the beam width
+   symetry_range = 0.8 * width # 80% of the beam width (avoid shoulders)
    step = 0.001
    half_pos = np.arange( symetry_range / 2.0, 0.0 + step, -step )
 
    # Interpolate the doses and calculate the symmetry
    lt_half_doses = np.interp( half_pos, data[:,0], data[:,1] )
    rt_half_doses = np.interp( -half_pos, data[:,0], data[:,1] )
-   sym = np.max( np.abs( lt_half_doses - rt_half_doses ) )/axis_dose * 100.0 # stop above 80% to avoid shoulders
+   new_axis_dose = np.interp( 0.0, data[:,0], data[:,1] )
+   sym = np.max( np.abs( lt_half_doses - rt_half_doses ) )/new_axis_dose * 100.0
    
    # Output the results
    print( "(" + os.path.basename( cur_file ) + ")\tsymétrie: " +
