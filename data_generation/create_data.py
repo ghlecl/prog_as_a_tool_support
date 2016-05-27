@@ -1,3 +1,7 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# 2016 - Ghyslain Leclerc (ghleclerc@gmail.com)
 
 def read_file( file_name : str ):
    data = []
