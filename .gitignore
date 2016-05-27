@@ -2,7 +2,9 @@
 *.pyc
 *~$*
 main
+data_generation/create_timing_data.py
 
 
 # Directories (and thus their content)
 __pycache__/
+data/timing/
