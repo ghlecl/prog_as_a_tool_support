@@ -1,5 +1,5 @@
 
-#Summary
+# Summary
 This project is the code used in a presentation made at the CHU de Quebec - Université Laval
 on using programming as a tool.
 
@@ -11,7 +11,7 @@ Some radiation therapy data is analyzed using a few techniques:
 4. C++ code
 
 
-##Data Generation
+## Data Generation
 The data represents a dose profile in radiation therapy, i.e. a plot of dose as a function
 of lateral position in a medical radiation beam.  Ignoring the file header, it consists of
 two columns representing position (cm) and dose (%).
@@ -35,8 +35,8 @@ randomly, but the same for every position) and some noise in the dose for the in
 simulate non symmetrical data.  The new data will be written in the data folder of the project.
 
 
-##Analysis
-###Excel
+## Analysis
+### Excel
 This Microsoft Excel (TM) spreadsheet is probably not 100% optimized and I'm sure
 some people will say I could have done better.  That being said, it does calculate
 the correct symmetry for the data.  To calculate a new profile, you have to:
@@ -52,12 +52,12 @@ the correct symmetry for the data.  To calculate a new profile, you have to:
 
 This should then yeild the symmetry in the last used colum of your data sheet.
 
-###Programs
+### Programs
 Every program needs to be provided at least one (or more) file name.  It opens the file
 as an ASCII file and attempts to read radiation profile data from it.  It then
 calculates the symmetry and reports it to standard output.
 
-####Vanilla Python
+#### Vanilla Python
 The program is divided into two files : lib.py and analyze.py.  The analyze.py file
 is the one containing the main program and the lib.py file contains the more generic
 helper functions.  It does not contain a hash/bang symbol, meaning it is not considered
@@ -65,14 +65,14 @@ an executable and must be run explicitely through Python.
 
 python analyze.py "my file name"
 
-####Numpy Python
-#####Approx
+#### Numpy Python
+##### Approx
 The program uses Numpy functions instead of the hand written ones, but implments
 the same algorithm with the same command line interface.
 
 python analyze.py "my file name"
 
-#####Gradient
+##### Gradient
 The program uses Numpy functions and a difference algorithm to find the width and
 center of the profile.  The algorithm is based on the maximum and minimum of the
 derivative of the profile to extract the two 50% positions.  Then, the rest
@@ -80,7 +80,7 @@ of the algorithm is pretty much the same.
 
 python compute_sym.py "my file name"
 
-####C++
+#### C++
 The program is a single cpp file which contains everything.  It relies only on the
 STL (Standard Template Library), but does use C++14 features so should be compiled
 with the appropriate compiler options on some platform (Clang and GCC).  To compile
